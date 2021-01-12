@@ -1,30 +1,40 @@
 import React, { useState } from "react";
+import { useFormik } from "formik";
 
 import "./styles.css";
+
 const Login = (props) => {
+  useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+  });
+
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [password, setPassword] = useState(null);
   const [email, setEmail] = useState(null);
   return (
     <>
-      <div class="container">
+      <div className="container">
         <form id="signup">
-          <div class="header">
+          <div className="header">
             <h3>Sign In</h3>
           </div>
 
-          <div class="sep"></div>
+          <div className="sep"></div>
 
-          <div class="inputs">
+          <div className="inputs">
             <input
               type="email"
               onChange={(text) => setEmail(text.target.value)}
               placeholder="e-mail"
-              autofocus
             />
 
-            {emailError && <p className="error">Please Enter valid Email</p>}
+            {emailError && (
+              <p className="error">Please Enter valid Email</p>
+            )}
             <input
               type="password"
               onChange={(text) => setPassword(text.target.value)}
