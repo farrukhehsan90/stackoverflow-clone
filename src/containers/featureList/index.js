@@ -18,7 +18,6 @@ const FeatureList = (props) => {
   const [tags, setTags] = useState(null);
   const [questions, setQuestions] = useState(null);
 
-  
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     const userId = props.match.params.user;
@@ -46,7 +45,7 @@ const FeatureList = (props) => {
       setAnswerCount(answerSum);
       setTags(tagsByStack.data.items);
     } catch (err) {}
-  }, []);
+  }, [props.match.params.user]);
 
   return (
     <Fragment>
