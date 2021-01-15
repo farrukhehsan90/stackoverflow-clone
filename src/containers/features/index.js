@@ -9,16 +9,14 @@ const Features = () => {
   const [sortType, setSortType] = useState("Newest");
   const [featurePost, setFeaturePost] = useState(null);
 
-
   useEffect(() => {
-    async function fetchPosts() {
+    const getFeaturePosts = async () => {
       const res = await getAllQuestions();
       setFeaturePost(res?.data?.items);
-    }
-    fetchPosts();
+    };
+    getFeaturePosts();
   }, []);
 
-  
   return (
     <Fragment>
       <div id="mainbar" className="homepage">

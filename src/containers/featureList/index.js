@@ -18,40 +18,36 @@ const FeatureList = (props) => {
   const [tags, setTags] = useState(null);
   const [questions, setQuestions] = useState(null);
 
-  useEffect(() => {
-    // eslint-disable-next-line no-unused-vars
-    const foo = async () => {
-      const userId = props.match.params.user;
-
-      try {
-        const userbystack = await getUser(userId);
-        const questionsBystack = await getQuestions(userId);
-        const tagsByStack = await getTags(userId);
-        setUser(userbystack?.data?.items[0]);
-        setQuestions(questionsBystack.data.items);
-        const answerSum = await questionsBystack.data.items.reduce(function (
-          a,
-          b
-        ) {
-          return a + b["answer_count"];
-        },
-        0);
-        const scoreSum = await questionsBystack.data.items.reduce(function (
-          a,
-          b
-        ) {
-          return a + b["score"];
-        },
-        0);
-        setScoreCount(scoreSum);
-        setAnswerCount(answerSum);
-        setTags(tagsByStack.data.items);
-      } catch (err) {}
-    };
-  });
-
-
   
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(async () => {
+    const userId = props.match.params.user;
+    try {
+      const userbystack = await getUser(userId);
+      const questionsBystack = await getQuestions(userId);
+      const tagsByStack = await getTags(userId);
+      setUser(userbystack?.data?.items[0]);
+      setQuestions(questionsBystack.data.items);
+      const answerSum = await questionsBystack.data.items.reduce(function (
+        a,
+        b
+      ) {
+        return a + b["answer_count"];
+      },
+      0);
+      const scoreSum = await questionsBystack.data.items.reduce(function (
+        a,
+        b
+      ) {
+        return a + b["score"];
+      },
+      0);
+      setScoreCount(scoreSum);
+      setAnswerCount(answerSum);
+      setTags(tagsByStack.data.items);
+    } catch (err) {}
+  }, []);
+
   return (
     <Fragment>
       <PageTitle title={`User ${user?.display_name} - Stack Overflow`} />
