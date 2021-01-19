@@ -1,34 +1,33 @@
 import React, { Component } from "react";
+import {withRouter} from 'react-router-dom';
 
 import "./style.css";
 
-class Header extends Component {
-  state = {
-    showDropDown: false,
-    access_token: "",
-  };
+const Header =({history})=> {
+  
 
-  renderLogout = () => {
+  const [showDropDown,setShowDropDown]=useState(false);
+  const [access_token,setAccessToken]=useState("");
+
+  const renderLogout = () => {
     return (
       <li
         className={"sidebar-inactive-list buttonColor"}
-        onClick={() => this.handleLogout}
+        onClick={() => handleLogout}
       >
         <span style={{ marginLeft: 12 }}>Log Out</span>
       </li>
     );
   };
 
-  handleNavigation = (route) => {
-    this.props.history.push(route);
+  const handleNavigation = (route) => {
+    history.push(route);
   };
 
-  handleLogout = () => {
-    this.props.history.push("/");
+ const handleLogout = () => {
+    history.push("/");
   };
-
-  render = () => {
-    const { showDropDown, user } = this.state;
+    
     if (!user) return null;
     return (
       <div
@@ -45,17 +44,17 @@ class Header extends Component {
         <div
           className="mr-3 d-flex align-items-center"
           onClick={() =>
-            this.setState({ showDropDown: !this.state.showDropDown })
+            setShowDropDown({ showDropDown: !showDropDown })
           }
         >
           <div className="mx-2"></div>
           <div className="dropDown">
-            {!!showDropDown && this.renderLogout()}
+            {!!showDropDown && renderLogout()}
           </div>
         </div>
       </div>
     );
   };
-}
 
-export default Header;
+
+export default withRouter(Header);

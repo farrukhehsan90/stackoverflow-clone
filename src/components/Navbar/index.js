@@ -1,23 +1,21 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 
 import "./styles.css";
 
-class Navbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: null,
-      routeName: "",
-      showSidebar: false,
-      showDropdownMenu: false,
-    };
-  }
+const Navbar =(props)=> {
+    
+     const [user,setUser]=useState(null),
+     const [routeName,setRouteName]=useState(""),
+     const [showSidebar,setShowSidebar]=useState(false),
+     const [showDropdownMenu,setShowDropdownMenu]=useState(false),
+    
+  
 
-  handleNavigation = (route) => {
-    this.props.history.push(route);
+  const handleNavigation = (route) => {
+    props.history.push(route);
   };
 
-  renderLargeNavbar = () => {
+  const renderLargeNavbar = () => {
     return (
       <div
         id="large-navbar"
@@ -34,7 +32,7 @@ class Navbar extends Component {
           <button
             type="button"
             className="btn btn-light btn-sm"
-            onClick={() => this.handleNavigation("/")}
+            onClick={() => handleNavigation("/")}
           >
             Log Out
           </button>
@@ -43,7 +41,7 @@ class Navbar extends Component {
     );
   };
 
-  renderSmallNavbar = () => {
+  const renderSmallNavbar = () => {
     return (
       <div id="small-navbar">
         <div className="py-2 d-flex align-items-center justify-content-between"></div>
@@ -52,22 +50,22 @@ class Navbar extends Component {
     );
   };
 
-  render() {
+
     return (
       <div
         className="container-fluid fixed-top shadow px-3 py-2 mb-5"
         style={{
-          backgroundColor: this.props.isBackgroundColor
+          backgroundColor: props.isBackgroundColor
             ? "#fff"
             : "transparent",
           transition: "background-color 300ms linear",
         }}
       >
-        {this.renderLargeNavbar()}
-        {this.renderSmallNavbar()}
+        {renderLargeNavbar()}
+        {renderSmallNavbar()}
       </div>
     );
   }
-}
+
 
 export default Navbar;

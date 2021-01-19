@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Loader from 'react-loader-spinner'
 import PropTypes from "prop-types";
 
+const HEIGHT=100;
+const WIDTH=100;
 
 import './styles.css'
 
@@ -22,8 +24,8 @@ class DotsLoader extends Component {
                     visible={isloading}
                     type="ThreeDots"
                     color="#fff"
-                    height={100}
-                    width={100}
+                    height={HEIGHT}
+                    width={WIDTH}
                 />
             </div>
         );

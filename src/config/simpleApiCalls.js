@@ -1,7 +1,8 @@
 
 import axios from "axios";
 import {
-  getFeatureQuestion
+  getFeatureQuestion,
+  BASE_URL
 } from "./WebServices";
 
 
@@ -24,7 +25,7 @@ const getAllQuestions = () => {
 const getUser = (userId) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(`https://api.stackexchange.com/2.2/users/${userId}?key=U4DMV*8nvpm3EOpvf69Rxw((&site=stackoverflow&order=desc&sort=reputation&filter=default`)
+      .get(`${BASE_URL}users/${userId}?key=U4DMV*8nvpm3EOpvf69Rxw((&site=stackoverflow&order=desc&sort=reputation&filter=default`)
       .then((response) => {
         if (response.data) {
           
@@ -39,7 +40,7 @@ const getUser = (userId) => {
 const getTags = (userId) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(`https://api.stackexchange.com/2.2/users/${userId}/tags?key=U4DMV*8nvpm3EOpvf69Rxw((&site=stackoverflow&order=desc&sort=popular&filter=default`)
+      .get(`${BASE_URL}users/${userId}/tags?key=U4DMV*8nvpm3EOpvf69Rxw((&site=stackoverflow&order=desc&sort=popular&filter=default`)
       .then((response) => {
         if (response.data) {
           
@@ -54,7 +55,7 @@ const getTags = (userId) => {
 const getQuestions = (userId) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(`https://api.stackexchange.com/2.2/users/${userId}/questions?key=U4DMV*8nvpm3EOpvf69Rxw((&site=stackoverflow&order=desc&sort=activity&filter=default`)
+      .get(`${BASE_URL}users/${userId}/questions?key=U4DMV*8nvpm3EOpvf69Rxw((&site=stackoverflow&order=desc&sort=activity&filter=default`)
       .then((response) => {
         if (response.data) {
           

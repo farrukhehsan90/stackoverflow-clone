@@ -32,9 +32,7 @@ const Login = (props) => {
               placeholder="e-mail"
             />
 
-            {emailError && (
-              <p className="error">Please Enter valid Email</p>
-            )}
+            {emailError && <p className="error">Please Enter valid Email</p>}
             <input
               type="password"
               onChange={(text) => setPassword(text.target.value)}
